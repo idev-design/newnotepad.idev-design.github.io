@@ -398,38 +398,74 @@ function printDocument() {
 
 function exportToPDF() {
     try {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        
-        // Get content and split into lines
-        const content = editor.innerText;
-        const lines = doc.splitTextToSize(content, 180);
-        
-        let y = 10;
-        lines.forEach(line => {
-            if (y > 280) { // Check if we need a new page
-                doc.addPage();
-                y = 10;
+        createModal('Export to PDF', [
+            { name: 'filename', placeholder: 'Enter filename (without .pdf)', type: 'text' }
+        ], (values) => {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Get content and split into lines
+            const content = editor.innerText;
+            const lines = doc.splitTextToSize(content, 180);
+            
+            let y = 10;
+            lines.forEach(line => {
+                if (y > 280) { // Check if we need a new page
+                    doc.addPage();
+                    y = 10;
+                }
+                doc.text(line, 10, y);
+                y += 7;
+            });
+            
+            // Use user's filename or default if empty
+            let filename = values.filename.trim() || 'document';
+            // Add .pdf extension if not present
+            if (!filename.toLowerCase().endsWith('.pdf')) {
+                filename += '.pdf';
             }
-            doc.text(line, 10, y);
-            y += 7;
+            
+            doc.save(filename);
+            showNotification('PDF exported successfully!', 'success');
         });
-        
-        doc.save('document.pdf');
     } catch (error) {
+        console.error('PDF Export Error:', error);
         showNotification('Error creating PDF. Please try again.', 'error');
     }
 }
 
+// Enhanced showNotification function with different styles for success/error
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
-    notification.textContent = message;
     
+    // Add icon based on notification type
+    let icon = '';
+    switch(type) {
+        case 'success':
+            icon = '<i class="fas fa-check-circle"></i> ';
+            break;
+        case 'error':
+            icon = '<i class="fas fa-exclamation-circle"></i> ';
+            break;
+        default:
+            icon = '<i class="fas fa-info-circle"></i> ';
+    }
+    
+    notification.innerHTML = icon + message;
     document.body.appendChild(notification);
     
+    // Add animation class
     setTimeout(() => {
-        notification.remove();
+        notification.classList.add('show');
+    }, 10);
+    
+    // Remove notification after delay
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
     }, 3000);
 }
 
