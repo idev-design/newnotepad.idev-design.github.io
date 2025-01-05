@@ -76,9 +76,47 @@
             </div>
         </div>
 
+        <!-- Add this in the toolbar section of index.html, after the existing toolbar-section divs -->
+<div class="toolbar-section">
+    <button id="insertImage" title="Insert Image">
+        <i class="fas fa-image"></i>
+    </button>
+    <button id="insertTable" title="Insert Table">
+        <i class="fas fa-table"></i>
+    </button>
+    <button id="insertLink" title="Insert Link">
+        <i class="fas fa-link"></i>
+    </button>
+</div>
+
+<div class="toolbar-section">
+    <button id="findReplace" title="Find and Replace">
+        <i class="fas fa-search-replace"></i>
+    </button>
+    <button id="print" title="Print">
+        <i class="fas fa-print"></i>
+    </button>
+    <button id="exportPDF" title="Export to PDF">
+        <i class="fas fa-file-pdf"></i>
+    </button>
+</div>
+
         <div class="editor-container">
             <div id="editor" contenteditable="true" spellcheck="true"></div>
         </div>
+
+        <!-- Add this before the status-bar div -->
+<div class="word-goal-container">
+    <div class="word-goal">
+        <span id="wordGoal">0/0 words</span>
+        <button id="setGoalBtn" class="goal-button">Set Goal</button>
+    </div>!-- Add this before the status-bar div -->
+<div class="word-goal-container">
+    <div class="word-goal">
+        <span id="wordGoal">0/0 words</span>
+        <button id="setGoalBtn" class="goal-button">Set Goal</button>
+    </div>
+</div>
 
         <div class="status-bar">
             <div class="word-count">
@@ -109,5 +147,9 @@
 
     <!-- Script files -->
     <script src="script.js"></script>
+    <!-- Add these scripts before closing body tag -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="additional-features.js"></script>
+        
 </body>
 </html>
