@@ -188,6 +188,107 @@ header h1 {
     color: #5b4636;
 }
 
+/* Additional Toolbar Styles */
+.toolbar button i {
+    font-size: 1.1em;
+}
+
+/* Word Goal Styles */
+.word-goal-container {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.word-goal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.goal-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.goal-button:hover {
+    background-color: #45a049;
+}
+
+/* Table Styles */
+#editor table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+
+#editor td, #editor th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    min-width: 50px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.modal input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.modal-buttons button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-buttons .confirm {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.modal-buttons .cancel {
+    background-color: #f44336;
+    color: white;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .toolbar {
