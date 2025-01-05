@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Text Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 400px;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        .download-section {
+            margin: 10px 0;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Text Editor</h1>
+    
+    <textarea id="editor" placeholder="Start typing here..."></textarea>
+    
+    <div class="download-section">
+        <input type="text" id="filename" placeholder="Enter filename">
+        <button onclick="downloadText()">Download</button>
+    </div>
+
+    <script>
+        function downloadText() {
+            // Get the text content
+            const text = document.getElementById('editor').value;
+            
+            // Get the filename
+            let filename = document.getElementById('filename').value;
+            
+            // Add .txt extension if not present
+            if (!filename.toLowerCase().endsWith('.txt')) {
+                filename += '.txt';
+            }
+
+            // Create a Blob with the text content
+            const blob = new Blob([text], { type: 'text/plain' });
+            
+            // Create a temporary URL for the Blob
+            const url = window.URL.createObjectURL(blob);
+            
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            
+            // Append link to body, click it, and remove it
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Release the URL object
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
